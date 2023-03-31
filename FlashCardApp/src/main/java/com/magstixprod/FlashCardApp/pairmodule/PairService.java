@@ -1,38 +1,40 @@
-/*
+
 package com.magstixprod.FlashCardApp.pairmodule;
 
-import java.util.Optional;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
-//@AllArgsConstructor
-//@NoArgsConstructor
 public class PairService {
-	//@Autowired
+	@Autowired
 	private PairRepository repository;
 	
-	public PairService(PairRepository r) {
-		this.repository = r;
+	public Pair createPair(Pair pair) {
+		return repository.save(pair);
 	}
-	
-	public void createPair(Pair pair) {
-		repository.save(pair);
+	public Pair getPair(Object id) {
+		return repository.findById(id).orElseThrow(()->new EntityNotFoundException());
 	}
-	public Optional<Pair> getPair(Object id) {
-		return repository.findById(id);
-	}
-	public Iterable<Pair> getAllPairs(){
+	public List<Pair> getAllPairs(){
 		return repository.findAll();
 	}
-	public Iterable<Pair> getAllPairsById(Iterable<Object> id){
-		return repository.findAllById(id);
+	public List<Pair> getAllPairsBySetId(Object setId){
+		return repository.findBySetId(setId);
 	}	
-	public void updatePair(Pair pair) {
-		repository.save(pair);
+	public Pair updatePair(Object id, Pair pair) {
+		Pair existingPair = repository.findById(id).orElseThrow(()->new EntityNotFoundException());
+		existingPair.setPairId(pair.getPairId());
+		existingPair.setTerm(pair.getTerm());
+		existingPair.setDefinition(pair.getDefinition());
+		existingPair.setSetId(pair.getSetId());
+		existingPair.setUserId(pair.getUserId());
+		return repository.save(existingPair);
 	}
-	public void deletePair(Pair pair) {
-		repository.delete(pair);
+	public void deletePair(Object id) {
+		repository.deleteById(id);
 	}
 }
-*/

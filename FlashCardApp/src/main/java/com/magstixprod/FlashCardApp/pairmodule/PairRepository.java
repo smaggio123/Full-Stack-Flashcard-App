@@ -1,13 +1,12 @@
-/*
+
 package com.magstixprod.FlashCardApp.pairmodule;
+
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-//@Transactional
-//@NoRepositoryBean
-public interface PairRepository extends JpaRepository<Pair,Object>{//CrudRepository<Pair, Object>{
-
+public interface PairRepository extends JpaRepository<Pair,Object>{
+	List<Pair> findBySetId(Object set_id);
 }
-*/

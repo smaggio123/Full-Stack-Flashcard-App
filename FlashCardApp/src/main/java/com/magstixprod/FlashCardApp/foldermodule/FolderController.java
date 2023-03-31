@@ -42,6 +42,7 @@ public class FolderController {
 	@PutMapping("/{id}")
 	public Folder updateFolder(@PathVariable Object id, @RequestBody Map<String,Object> json) {
 		Folder folder = new Folder();
+		folder.setFolderId(Integer.parseInt((String)id));
 		folder.setName((String)json.get("name"));
 		folder.setUserId((int)json.get("userId"));
 		return service.updateFolder(id, folder);

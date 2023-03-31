@@ -26,6 +26,7 @@ public class FolderService {
 	}
 	public Folder updateFolder(Object id, Folder folder) {
 		Folder existingFolder = repository.findById(id).orElseThrow(()->new EntityNotFoundException());
+		existingFolder.setFolderId(folder.getFolderId());
 		existingFolder.setName(folder.getName());
 		return repository.save(existingFolder);
 	}

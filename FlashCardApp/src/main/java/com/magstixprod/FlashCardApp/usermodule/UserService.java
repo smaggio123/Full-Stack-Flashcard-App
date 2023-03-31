@@ -25,6 +25,7 @@ public class UserService {
 	
 	public User updateUser(Object id, User user) {
 		User existingUser = repository.findById(id).orElseThrow(()->new EntityNotFoundException());
+		existingUser.setId(user.getId());
 		existingUser.setName(user.getName());
 		existingUser.setUsername(user.getUsername());
 		existingUser.setPassword(user.getPassword());

@@ -41,6 +41,7 @@ public class UserController {
 	@PutMapping("/{id}")
 	public User updateUser(@PathVariable Object id,@RequestBody Map<String,Object> json) {
 		User user = new User();
+		user.setId(Integer.parseInt((String)id));
 		user.setUsername((String)json.get("username"));
 		user.setPassword((String)json.get("password"));
 		user.setName((String)json.get("name"));

@@ -1,6 +1,5 @@
 package com.magstixprod.FlashCardApp.foldermodule;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +19,7 @@ public class Folder {
 	private String folder_name;
 	@Column(name = "user_id", nullable = false)
 	private int userId;
-	
+	//Gets folder id
 	public int getFolderId() {
 		return folder_id;
 	}
@@ -39,5 +38,4 @@ public class Folder {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	
 }

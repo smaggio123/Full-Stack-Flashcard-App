@@ -1,43 +1,57 @@
-/*
+
 package com.magstixprod.FlashCardApp.setmodule;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.Map;
 
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/sets")
 public class SetController {
-	private SetRepository repository;
+	@Autowired
+	private SetService service;
 	
-	public SetController(SetRepository r) {
-		this.repository = r;
+	@PostMapping("")
+	public Set createSet(@RequestBody Map<String,Object> json) {
+		Set set = new Set();
+		set.setName((String)json.get("name"));
+		set.setFolderId((int)json.get("folderId"));
+		set.setUserId((int)json.get("userId"));
+		return service.createSet(set);
 	}
-	
-	public void createSet(Set set) {
-		ResponseEntity.ok(this.repository.save(set));
-		//repository.save(set);
+	@GetMapping("set/{id}")
+	public Set getSet(@PathVariable Object id) {
+		return service.getSet(id);
 	}
-	public ResponseEntity<Optional<Set>> getSet(Object id) {
-		return ResponseEntity.ok(this.repository.findById(id));
-		//return repository.findById(id);
+	@GetMapping("allsets")
+	public List<Set> getAllSets(){
+		return service.getAllSets();
 	}
-	public ResponseEntity<Iterable<Set>> getAllSets(){
-		return ResponseEntity.ok(this.repository.findAll());
-		//return repository.findAll();
-	}
-	public ResponseEntity<Iterable<Set>> getAllSetsById(Iterable<Object> id){
-		return ResponseEntity.ok(this.repository.findAllById(id));
-		//return repository.findAllById(id);
+	@GetMapping("set/{folderid}")
+	public List<Set> getAllSetsByFolderId(@PathVariable Object id){
+		return service.getAllSetsByFolderId(id);
 	}	
-	public void updateSet(Set set) {
-		ResponseEntity.ok(this.repository.save(set));
-		//repository.save(set);
+	@PutMapping("/{id}")
+	public Set updateSet(@PathVariable Object id, @RequestBody Map<String,Object> json) {
+		Set set = new Set();
+		set.setSetId(Integer.parseInt((String)id));
+		set.setName((String)json.get("name"));
+		set.setFolderId((int)json.get("folderId"));
+		set.setUserId((int)json.get("userId"));
+		return service.updateSet(id, set);
 	}
-	public void deleteSet(Set set) {
-		repository.delete(set);
+	@DeleteMapping("/{id}")
+	public void deleteSet(@PathVariable Object id) {
+		service.deleteSet(id);
 	}
 }
-*/
+

@@ -1,31 +1,29 @@
-/*
+
 package com.magstixprod.FlashCardApp.setmodule;
 
-import java.util.List;
-
-import org.springframework.stereotype.Component;
-
-import com.magstixprod.FlashCardApp.pairmodule.Pair;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-//@Data
-//@AllArgsConstructor
-//@NoArgsConstructor
-@Component
+
 @Entity
-//@Table(name="Set")
+@Table(name="Set_table")
 public class Set {
 	@Id
+	@Column(name = "set_id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int setId;
-	private String Name;
-	private List<Pair> ListOfTerms;
+	@Column(name = "set_name", nullable = false)
+	private String setName;
+	//private List<Pair> ListOfTerms;
+	@Column(name = "Folder_id", nullable = false)
 	private int folderId;
+	@Column(name = "User_id", nullable = false)
 	private int userId;
+	
 	public int getSetId() {
 		return setId;
 	}
@@ -33,17 +31,19 @@ public class Set {
 		this.setId = setId;
 	}
 	public String getName() {
-		return Name;
+		return setName;
 	}
 	public void setName(String name) {
-		Name = name;
+		setName = name;
 	}
+	/*
 	public List<Pair> getListOfTerms() {
 		return ListOfTerms;
 	}
 	public void setListOfTerms(List<Pair> listOfTerms) {
 		ListOfTerms = listOfTerms;
 	}
+	*/
 	public int getFolderId() {
 		return folderId;
 	}
@@ -56,7 +56,4 @@ public class Set {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	
-
 }
-*/
