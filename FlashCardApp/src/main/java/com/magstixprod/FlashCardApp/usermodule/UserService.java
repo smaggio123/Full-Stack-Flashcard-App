@@ -19,6 +19,9 @@ public class UserService {
 	public User getUser(Object id) {
 		return repository.findById(id).orElseThrow(()->new EntityNotFoundException());
 	}
+	public List<User> getUserByUsername(String username){
+		return repository.findByuserusername(username);
+	}
 	public List<User> getAllUsers(){
 		return repository.findAll();
 	}

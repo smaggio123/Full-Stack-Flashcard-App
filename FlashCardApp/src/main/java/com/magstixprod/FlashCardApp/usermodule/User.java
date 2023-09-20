@@ -18,8 +18,8 @@ public class User {
 	@Column(name = "user_id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int user_Id;
-	@Column(name = "user_username", nullable = false)
-	private String user_username;
+	@Column(name = "userusername", nullable = false)
+	private String userusername;
 	@Column(name = "user_password", nullable = false)
 	private String user_password;
 	@Column(name = "user_name", nullable = false)
@@ -29,9 +29,9 @@ public class User {
 	
 	
 	
-	public User(int user_Id, String user_username, String user_password, String user_name, String salt) {
+	public User(int user_Id, String userusername, String user_password, String user_name, String salt) {
 		this.user_Id = user_Id;
-		this.user_username = user_username;
+		this.userusername = userusername;
 		this.user_password = user_password;
 		this.user_name = user_name;
 		this.salt = salt;
@@ -46,10 +46,10 @@ public class User {
 		this.user_Id = id;
 	}
 	public String getUsername() {
-		return user_username;
+		return userusername;
 	}
 	public void setUsername(String username) {
-		user_username = username;
+		userusername = username;
 	}
 	public String getPassword() {
 		return user_password;
